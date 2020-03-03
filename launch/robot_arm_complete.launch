@@ -43,7 +43,10 @@
   <node name="human_follower" pkg="human_follower" type="human_follower_node" output="screen"/>
 
   <node name="laser_mannager" pkg="laser_manager" type="laser_manager_node" output="screen"/>
-  
+
+  <!-- rviz launch -->
+  <node name="rviz" pkg="rviz" type="rviz"/>
+
   <!-- ARM launch -->
   <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
       <rosparam>
@@ -69,8 +72,5 @@
              wrist_controller
              hand_controller"
        output="screen"/>
-
-  <!-- rviz launch -->
-  <node name="rviz" pkg="rviz" type="rviz"/>
 
 </launch>
