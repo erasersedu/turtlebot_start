@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <launch>
   <!-- Turtlebot -->
   <arg name="base"              default="$(env TURTLEBOT_BASE)"         doc="mobile base type [create, roomba]"/>
@@ -24,12 +25,13 @@
     <arg name="battery" value="$(arg battery)" />
   </include>
 
-  
+  <!-- Laser TF launch -->
   <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
     <param name="serial_port" type="string" value="/dev/sensors/hokuyo_H1107995" />
     <param name="frame_id" type="string" value="laser" />
   </node>
 
+  <!-- Human follower launch -->
   <node name="leg_finder" pkg="leg_finder" type="leg_finder_turtle" output="screen" args="--hyp">
     <param name="obst_xmin" value="0.0"/>
     <param name="obst_xmax" value="0.25"/>
@@ -42,9 +44,33 @@
 
   <node name="laser_mannager" pkg="laser_manager" type="laser_manager_node" output="screen"/>
   
+  <!-- ARM launch -->
+  <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+      <rosparam>
+         namespace: dxl_manager
+         serial_ports:
+             pan_tilt_port:
+                 port_name: "/dev/ttyUSB1"
+                 baud_rate: 1000000
+                 min_motor_id: 1
+                 max_motor_id: 5
+                 update_rate: 20
+      </rosparam>
+  </node>
+
+  <!-- Start tilt joint controller -->
+  <rosparam file="$(find rchomeedu_arm)/param/joints.yaml" command="load"/>
+  <node name="tilt_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+       args="--manager=dxl_manager
+             --port pan_tilt_port
+             waist_controller
+             shoulder_controller
+             elbow_controller
+             wrist_controller
+             hand_controller"
+       output="screen"/>
+
+  <!-- rviz launch -->
   <node name="rviz" pkg="rviz" type="rviz"/>
-
-
-  <arg name="urdf_file" value="$(find xacro)/xacro.py '$(find turtlebot_arm_description)/urdf/arm.urdf.xacro'" />
 
 </launch>
