@@ -36,7 +36,7 @@ class GoForwardAvoid():
 	goal = MoveBaseGoal()
 	goal.target_pose.header.frame_id = 'base_link'
 	goal.target_pose.header.stamp = rospy.Time.now()
-	goal.target_pose.pose.position.x = 0.1
+	goal.target_pose.pose.position.x = 0.3
 	goal.target_pose.pose.orientation.w = 1.0 #go forward
 
 	#start moving
