@@ -67,7 +67,7 @@
 
   <!-- Move base -->
   <arg name="custom_param_file" default="$(find turtlebot_start)/param/dummy.yaml"/>
-  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">
+  <include file="$(find turtlebot_start)/launch/includes/move_base.launch.xml">
     <arg name="custom_param_file" value="$(arg custom_param_file)"/>
   </include>
 
