@@ -42,7 +42,24 @@
   <node name="human_follower" pkg="human_follower" type="human_follower_node" output="screen"/>
 
   <node name="laser_mannager" pkg="laser_manager" type="laser_manager_node" output="screen"/>
-  
+
+  <!-- Navigation -->
+  <!-- Map server -->
+  <arg name="map_file" default="$(find turtlebot_start)/param/maps/AIBot.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- amcl -->
+  <arg name="amcl_launch_file" default="$(find turtlebot_start)/param/amcl.launch.xml"/>
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+  <include file="$(arg amcl_launch_file)">
+    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+  </include>
+
+  <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz"/>
   
 </launch>
