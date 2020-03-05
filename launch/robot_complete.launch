@@ -49,22 +49,27 @@
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!-- amcl -->
-      <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan_topic:=/scan_wrt_robot odom_frame_id:=/odom base_frame_id:=/base_footprint global_frame_id:=/map">
-      <!--node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan:=/hsrb/base_scan"-->
-        <!--param name="odom_alpha1" value="0.001"/>
-        <param name="odom_alpha2" value="0.001"/>
-        <param name="odom_alpha3" value="0.001"/>
-        <param name="odom_alpha4" value="0.001"/>
-        <param name="odom_alpha5" value="0.001"/-->
+  <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan_topic:=/scan_wrt_robot odom_frame_id:=/odom base_frame_id:=/base_footprint global_frame_id:=/map">
+    <!--param name="odom_alpha1" value="0.001"/>
+    <param name="odom_alpha2" value="0.001"/>
+    <param name="odom_alpha3" value="0.001"/>
+    <param name="odom_alpha4" value="0.001"/>
+    <param name="odom_alpha5" value="0.001"/-->
 
-        <!--param name="initial_pose_x" value="1.32"/>
-        <param name="initial_pose_y" value="2.22"/>
-        <param name="initial_pose_a" value="4.09"/-->
+    <!--param name="initial_pose_x" value="1.32"/>
+    <param name="initial_pose_y" value="2.22"/>
+    <param name="initial_pose_a" value="4.09"/-->
 
-        <param name="update_min_a" value="0.1"/>
-        <param name="laser_min_range" value="0.3"/>
-        <param name="odom_model_type" value="diff"/>
-      </node>
+    <param name="update_min_a" value="0.1"/>
+    <param name="laser_min_range" value="0.3"/>
+    <param name="odom_model_type" value="diff"/>
+  </node>
+
+  <!-- Move base -->
+  <arg name="custom_param_file" default="$(find turtlebot_start)/param/dummy.yaml"/>
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">
+    <arg name="custom_param_file" value="$(arg custom_param_file)"/>
+  </include>
 
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz"/>
