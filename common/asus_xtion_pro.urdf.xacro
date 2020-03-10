@@ -10,21 +10,14 @@
   <xacro:property name="asus_xtion_pro_cam_rel_rgb_py"   value="-0.0220" />
 
   <!-- Parameterised in part by the values in turtlebot_properties.urdf.xacro -->
-  <!--<xacro:macro name="sensor_asus_xtion_pro" params="parent">
-    <joint name="camera_rgb_joint" type="fixed">
+  <xacro:macro name="sensor_asus_xtion_pro" params="parent">
+    <!--<joint name="camera_rgb_joint" type="fixed">
       <origin xyz="${cam_px} ${asus_xtion_pro_cam_py} ${cam_pz}"
               rpy="${cam_or} ${cam_op} ${cam_oy}"/>
       <parent link="${parent}"/>
       <child link="camera_rgb_frame" />
     </joint>
     <link name="camera_rgb_frame"/>-->
-
-    <joint name="camera_rgb_joint" type="fixed">
-      <origin xyz="0.00 0.00 0.06" rpy="0 0 0" />
-      <parent link="head_tilt_link"/>
-      <child link="camera_rgb_link" />
-    </joint>
-    <link name="camera_rgb_link" />
 
     <joint name="camera_rgb_optical_joint" type="fixed">
       <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />

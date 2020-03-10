@@ -221,19 +221,26 @@
     </link>
 
     <!-- head pan_tilt -->
-    <joint name="head_pan_joint" type="continuous">
+    <joint name="head_pan_joint" type="fixed">
       <origin xyz="-0.20 0.00 0.90" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="head_pan_link" />
     </joint>
     <link name="head_pan_link" />
 
-    <joint name="head_tilt_joint" type="continuous">
+    <joint name="head_tilt_joint" type="fixed">
       <origin xyz="0.00 0.00 0.05" rpy="0 0 0" />
       <parent link="head_pan_link"/>
       <child link="head_tilt_link" />
     </joint>
     <link name="head_tilt_link" />
+
+    <link name="camera_rgb_frame" />
+    <joint name="camera_rgb_joint" type="fixed">
+      <origin xyz="0.00 0.00 0.06" rpy="0 0 0" />
+      <parent link="head_tilt_link"/>
+      <child link="camera_rgb_frame" />
+    </joint>
 
     <!-- Kobuki Gazebo simulation details -->
     <kobuki_sim/>
