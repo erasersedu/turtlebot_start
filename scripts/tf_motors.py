@@ -23,32 +23,32 @@ def callbackArmWaist(msg):
 #ID 2
 def callbackArmShoulder(msg):
     global stateArmShoulder
-    stateArmShoulder = msg.current_pos - msg.error
+    stateArmShoulder = msg.current_pos# - msg.error
 
 #ID 3
 def callbackArmElbow(msg):
     global stateArmElbow
-    stateArmElbow = msg.current_pos - msg.error
+    stateArmElbow = msg.current_pos# - msg.error
 
 #ID 4
 def callbackArmWrist(msg):
     global stateArmWrist
-    stateArmWrist = msg.current_pos - msg.error
+    stateArmWrist = msg.current_pos# - msg.error
 
 #ID 5
 def callbackArmHand(msg):
     global stateArmHand
-    stateArmHand = msg.current_pos - msg.error
+    stateArmHand = msg.current_pos# - msg.error
 
 #ID 6
 def callbackHeadPan(msg):
     global stateHeadPan
-    stateHeadPan = msg.current_pos - msg.error
+    stateHeadPan = msg.current_pos# - msg.error
 
 #ID 7
 def callbackHeadTilt(msg):
     global stateHeadTilt
-    stateHeadTilt = msg.current_pos - msg.error
+    stateHeadTilt = msg.current_pos# - msg.error
 
 def main():
     print "INITIALIZING MOTORS TF NODE..."
