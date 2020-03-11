@@ -64,7 +64,7 @@ def main():
     rospy.init_node("motors_states")
     jointStates = JointState()
     jointStates.name = ["arm_waist_joint", "arm_shoulder_joint", "arm_elbow_joint", "head_pan_joint", "head_tilt_joint"]
-    jointStates.position = [0 ,0, 0, 0]
+    jointStates.position = [0 ,0, 0, 0, 0]
 
     ###Connection with ROS
     rospy.Subscriber('/waist_controller/state', JointStateDynamixel, callbackArmWaist)
