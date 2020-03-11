@@ -20,7 +20,7 @@ def callbackHeadPan(msg):
 
 def callbackHeadTilt(msg):
     global stateHeadTilt
-    stateHeadTilt = msg.current_pos - msg.error
+    stateHeadTilt = -1*(msg.current_pos - msg.error)
 
 def main():
     print "INITIALIZING HEAD NODE..."
