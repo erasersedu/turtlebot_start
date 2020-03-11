@@ -23,7 +23,7 @@ def callbackArmWaist(msg):
 #ID 2
 def callbackArmShoulder(msg):
     global stateArmShoulder
-    stateArmShoulder = -1*(msg.current_pos - msg.error)
+    stateArmShoulder = msg.current_pos - msg.error
 
 #ID 3
 def callbackArmElbow(msg):
@@ -48,7 +48,7 @@ def callbackHeadPan(msg):
 #ID 7
 def callbackHeadTilt(msg):
     global stateHeadTilt
-    stateHeadTilt = -1*(msg.current_pos - msg.error)
+    stateHeadTilt = msg.current_pos - msg.error
 
 def main():
     print "INITIALIZING MOTORS TF NODE..."
