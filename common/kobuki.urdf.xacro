@@ -222,14 +222,15 @@
 
     <!-- FEATURED ROBOT MODEL -->
     <!-- head pan_tilt -->
+    <!-- head base -->
     <link name="head_base_link">
       <visual>
         <geometry>
           <box size="0.045 0.03 0.035"/>
         </geometry>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-        <material name="black">
-            <color rgba="0 0 0 1"/>
+        <material name="blue">
+            <color rgba="0 0 0.8 1"/>
         </material>
       </visual>
     </link>
@@ -240,14 +241,15 @@
       <child link="head_base_link" />
     </joint>
 
+    <!-- head pan -->
     <link name="head_pan_link">
       <visual>
         <geometry>
           <box size="0.03 0.035 0.045"/>
         </geometry>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-        <material name="blue">
-            <color rgba="0 0 0.8 1"/>
+        <material name="black">
+            <color rgba="0 0 0 1"/>
         </material>
       </visual>
     </link>
@@ -260,6 +262,7 @@
       <child link="head_pan_link" />
     </joint>
 
+    <!-- head tilt -->
     <link name="head_tilt_link">
       <visual>
         <geometry>
@@ -275,11 +278,12 @@
     <joint name="head_tilt_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 0 0.0" />
+      <origin xyz="0.00 0.00 0.045" rpy="0 0 0" />
       <parent link="head_pan_link"/>
       <child link="head_tilt_link" />
     </joint>
 
+    <!-- camera -->
     <link name="camera_rgb_frame"/>
     <joint name="camera_rgb_joint" type="fixed">
       <origin xyz="0.0 0.0 0.05" rpy="0 0 0" />
@@ -288,6 +292,7 @@
     </joint>
 
     <!-- robot arm as in built as in http://wiki.ros.org/turtlebot_arm -->
+    <!-- arm base -->
     <link name="arm_base_link">
       <visual>
         <geometry>
@@ -301,11 +306,12 @@
     </link>
 
     <joint name="arm_base_joint" type="fixed">
-      <origin xyz="0.10 0.00 0.45" rpy="0 0 0" />
+      <origin xyz="0.10 0.00 0.40" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="arm_base_link" />
     </joint>
 
+    <!-- arm waist -->
     <link name="arm_waist_link">
       <visual>
         <geometry>
@@ -326,6 +332,7 @@
       <child link="arm_waist_link" />
     </joint>
 
+    <!-- arm shoulder -->
     <link name="arm_shoulder_link">
       <visual>
         <geometry>
@@ -341,11 +348,12 @@
     <joint name="arm_shoulder_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.035" rpy="0 0 0.0" />
+      <origin xyz="0.00 0.00 0.035" rpy="0 0 0" />
       <parent link="arm_waist_link"/>
       <child link="arm_shoulder_link" />
     </joint>
 
+    <!-- arm elbow -->
     <link name="arm_elbow_base_link">
       <visual>
         <geometry>
@@ -379,11 +387,12 @@
     <joint name="arm_elbow_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 0 0.0" />
+      <origin xyz="0.00 0.00 0.045" rpy="0 0 0" />
       <parent link="arm_elbow_base_link"/>
       <child link="arm_elbow_link" />
     </joint>
 
+    <!-- arm wrist -->
     <link name="arm_wrist_base_link">
       <visual>
         <geometry>
@@ -405,7 +414,7 @@
     <link name="arm_wrist_link">
       <visual>
         <geometry>
-          <box size="0.025 0.045 0.05"/>
+          <box size="0.025 0.045 0.025"/>
         </geometry>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <material name="white">
@@ -417,9 +426,30 @@
     <joint name="arm_wrist_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 0 0.0" />
+      <origin xyz="0.00 0.00 0.045" rpy="0 0 0" />
       <parent link="arm_wrist_base_link"/>
       <child link="arm_wrist_link" />
+    </joint>
+
+    <!-- arm hand -->
+    <link name="arm_hand_link">
+      <visual>
+        <geometry>
+          <box size="0.035 0.045 0.03"/>
+        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="arm_hand_joint" type="revolute">
+      <axis xyz="0 1 0"/>
+      <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
+      <origin xyz="0.00 0.00 0.025" rpy="0 1.57 1.57" />
+      <parent link="arm_wrist_link"/>
+      <child link="arm_hand_link" />
     </joint>
 
     <!-- Kobuki Gazebo simulation details -->
