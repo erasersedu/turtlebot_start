@@ -63,13 +63,14 @@ def main():
 
     rospy.init_node("motors_states")
     jointStates = JointState()
-    jointStates.name = ["arm_waist_joint", "arm_shoulder_joint", "arm_elbow_joint", "head_pan_joint", "head_tilt_joint"]
+    jointStates.name = ["arm_waist_joint", "arm_shoulder_joint", "arm_elbow_joint", "arm_wrist_joint", "head_pan_joint", "head_tilt_joint"]
     jointStates.position = [0 ,0, 0, 0, 0]
 
     ###Connection with ROS
     rospy.Subscriber('/waist_controller/state', JointStateDynamixel, callbackArmWaist)
     rospy.Subscriber('/shoulder_controller/state', JointStateDynamixel, callbackArmShoulder)
     rospy.Subscriber('/elbow_controller/state', JointStateDynamixel, callbackArmElbow)
+    rospy.Subscriber('/wrist_controller/state', JointStateDynamixel, callbackArmWrist)
 
     rospy.Subscriber('/head_pan_controller/state', JointStateDynamixel, callbackHeadPan)
     rospy.Subscriber('/head_tilt_controller/state', JointStateDynamixel, callbackHeadTilt)
@@ -91,8 +92,9 @@ def main():
         jointStates.position[0] = stateArmWaist
         jointStates.position[1] = stateArmShoulder
         jointStates.position[2] = stateArmElbow
-        jointStates.position[3] = stateHeadPan
-        jointStates.position[4] = stateHeadTilt
+        jointStates.position[3] = stateArmWrist
+        jointStates.position[4] = stateHeadPan
+        jointStates.position[5] = stateHeadTilt
 
         pubJointStates.publish(jointStates)
         loop.sleep()
