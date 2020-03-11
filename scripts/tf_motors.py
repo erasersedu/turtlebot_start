@@ -51,7 +51,7 @@ def callbackHeadTilt(msg):
     stateHeadTilt = -1*(msg.current_pos - msg.error)
 
 def main():
-    print "INITIALIZING HEAD NODE..."
+    print "INITIALIZING MOTORS TF NODE..."
 
     global stateArmWaist #Motor ID 1
     global stateArmShoulder #Motor ID 2
@@ -67,8 +67,8 @@ def main():
     jointStates.position = [0 ,0, 0, 0]
 
     ###Connection with ROS
-    rospy.Subscriber('/arm_waist_controller/state', JointStateDynamixel, callbackArmWaist)
-    rospy.Subscriber('/arm_shoulder_controller/state', JointStateDynamixel, callbackArmShoulder)
+    rospy.Subscriber('/waist_controller/state', JointStateDynamixel, callbackArmWaist)
+    rospy.Subscriber('/shoulder_controller/state', JointStateDynamixel, callbackArmShoulder)
 
     rospy.Subscriber('/head_pan_controller/state', JointStateDynamixel, callbackHeadPan)
     rospy.Subscriber('/head_tilt_controller/state', JointStateDynamixel, callbackHeadTilt)
