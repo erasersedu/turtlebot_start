@@ -16,11 +16,11 @@ def printHelp():
 #### MOTOR POSITION  CALLBACK  #######
 def callbackHeadPan(msg):
     global stateHeadPan
-    stateHeadPan = msg.data.current_pos - msg.data.error
+    stateHeadPan = msg.current_pos - msg.error
 
 def callbackHeadTilt(msg):
     global stateHeadTilt
-    stateHeadTilt = msg.data.current_pos - msg.data.error
+    stateHeadTilt = msg.current_pos - msg.error
 
 def main():
     print "INITIALIZING HEAD NODE..."
@@ -30,8 +30,8 @@ def main():
     jointStates.name = ["head_pan_joint", "head_tilt_joint"]
     jointStates.position = [0 ,0]
 
-    rospy.Subscriber('/head_pan_controller/state', JointStateDynamixel, self.callbackHeadPan)
-    rospy.Subscriber('/head_tilt_controller/state', JointStateDynamixel, self.callbackHeadTilt)
+    rospy.Subscriber('/head_pan_controller/state', JointStateDynamixel, callbackHeadPan)
+    rospy.Subscriber('/head_tilt_controller/state', JointStateDynamixel, callbackHeadTilt)
 
     pubJointStates = rospy.Publisher("/joint_states", JointState, queue_size = 1)
 
