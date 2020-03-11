@@ -435,7 +435,7 @@
     <link name="arm_hand_link">
       <visual>
         <geometry>
-          <box size="0.035 0.045 0.03"/>
+          <box size="0.03 0.035 0.045"/>
         </geometry>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <material name="white">
