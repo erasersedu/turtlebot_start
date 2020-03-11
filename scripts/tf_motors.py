@@ -14,37 +14,84 @@ def printHelp():
 
 ######################################
 #### MOTOR POSITION  CALLBACK  #######
+
+#ID 1
+def callbackArmWaist(msg):
+    global stateArmWaist
+    stateArmWaist = msg.current_pos - msg.error
+
+#ID 2
+def callbackArmShoulder(msg):
+    global stateArmShoulder
+    stateArmShoulder = -1*(msg.current_pos - msg.error)
+
+#ID 3
+def callbackArmElbow(msg):
+    global stateArmElbow
+    stateArmElbow = msg.current_pos - msg.error
+
+#ID 4
+def callbackArmWrist(msg):
+    global stateArmWrist
+    stateArmWrist = msg.current_pos - msg.error
+
+#ID 5
+def callbackArmHand(msg):
+    global stateArmHand
+    stateArmHand = msg.current_pos - msg.error
+
+#ID 6
 def callbackHeadPan(msg):
     global stateHeadPan
     stateHeadPan = msg.current_pos - msg.error
 
+#ID 7
 def callbackHeadTilt(msg):
     global stateHeadTilt
     stateHeadTilt = -1*(msg.current_pos - msg.error)
 
 def main():
     print "INITIALIZING HEAD NODE..."
-    ###Connection with ROS
+
+    global stateArmWaist #Motor ID 1
+    global stateArmShoulder #Motor ID 2
+    global stateArmElbow #Motor ID 3
+    global stateArmWrist #Motor ID 4
+    global stateArmHand #Motor ID 5
+    global stateHeadPan #Motor ID 6
+    global stateHeadTilt #Motor ID 7
+
     rospy.init_node("motors_states")
     jointStates = JointState()
-    jointStates.name = ["head_pan_joint", "head_tilt_joint"]
-    jointStates.position = [0 ,0]
+    jointStates.name = ["arm_waist_joint", "arm_shoulder_joint", "head_pan_joint", "head_tilt_joint"]
+    jointStates.position = [0 ,0, 0, 0]
+
+    ###Connection with ROS
+    rospy.Subscriber('/arm_waist_controller/state', JointStateDynamixel, callbackArmWaist)
+    rospy.Subscriber('/arm_shoulder_controller/state', JointStateDynamixel, callbackArmShoulder)
 
     rospy.Subscriber('/head_pan_controller/state', JointStateDynamixel, callbackHeadPan)
     rospy.Subscriber('/head_tilt_controller/state', JointStateDynamixel, callbackHeadTilt)
 
     pubJointStates = rospy.Publisher("/joint_states", JointState, queue_size = 1)
 
-    global stateHeadPan
-    global stateHeadTilt
+    stateArmWaist = 0
+    stateArmShoulder = 0
+    stateArmElbow = 0
+    stateArmWrist = 0
+    stateArmHand = 0
     stateHeadPan = 0
     stateHeadTilt = 0
 
     loop = rospy.Rate(30)
     while not rospy.is_shutdown():
         jointStates.header.stamp = rospy.Time.now()
-        jointStates.position[0] = stateHeadPan
-        jointStates.position[1] = stateHeadTilt
+
+        jointStates.position[0] = stateArmWaist
+        jointStates.position[1] = stateArmShoulder
+        jointStates.position[2] = stateHeadPan
+        jointStates.position[3] = stateHeadTilt
+
         pubJointStates.publish(jointStates)
         loop.sleep()
 

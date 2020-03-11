@@ -26,4 +26,6 @@
 		head_pan_controller
 		head_tilt_controller"
           output="screen"/>
+
+    <node name="tf_motors" pkg="turtlebot_start" type="tf_motors.py" output="screen"/>
 </launch>
