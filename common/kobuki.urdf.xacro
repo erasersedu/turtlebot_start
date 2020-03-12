@@ -257,7 +257,7 @@
     <joint name="head_pan_joint" type="revolute">
       <axis xyz="0 0 1"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.0 0.0 0.035" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 0.040" rpy="0 0 0" />
       <parent link="head_base_link"/>
       <child link="head_pan_link" />
     </joint>
@@ -278,7 +278,7 @@
     <joint name="head_tilt_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 0 0" />
+      <origin xyz="0.00 0.00 0.0475" rpy="0 0 0" />
       <parent link="head_pan_link"/>
       <child link="head_tilt_link" />
     </joint>
@@ -327,7 +327,7 @@
     <joint name="arm_waist_joint" type="revolute">
       <axis xyz="0 0 1"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.0 0.0 0.035" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 0.040" rpy="0 0 0" />
       <parent link="arm_base_link"/>
       <child link="arm_waist_link" />
     </joint>
@@ -348,7 +348,7 @@
     <joint name="arm_shoulder_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.035" rpy="0 0 0" />
+      <origin xyz="0.00 0.00 0.0475" rpy="0 0 0" />
       <parent link="arm_waist_link"/>
       <child link="arm_shoulder_link" />
     </joint>
@@ -367,7 +367,7 @@
     </link>
 
     <joint name="arm_elbow_base_joint" type="fixed">
-      <origin xyz="0.0 0.00 0.05" rpy="0 0 0" />
+      <origin xyz="0.0 0.00 0.0475" rpy="0 0 0" />
       <parent link="arm_shoulder_link"/>
       <child link="arm_elbow_base_link" />
     </joint>
@@ -387,7 +387,7 @@
     <joint name="arm_elbow_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 0 0" />
+      <origin xyz="0.00 0.00 0.0475" rpy="0 0 0" />
       <parent link="arm_elbow_base_link"/>
       <child link="arm_elbow_link" />
     </joint>
@@ -406,7 +406,7 @@
     </link>
 
     <joint name="arm_wrist_base_joint" type="fixed">
-      <origin xyz="0.0 0.00 0.05" rpy="0 0 0" />
+      <origin xyz="0.0 0.00 0.0475" rpy="0 0 0" />
       <parent link="arm_elbow_link"/>
       <child link="arm_wrist_base_link" />
     </joint>
@@ -426,7 +426,7 @@
     <joint name="arm_wrist_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 0 0" />
+      <origin xyz="0.00 0.00 0.035" rpy="0 0 0" />
       <parent link="arm_wrist_base_link"/>
       <child link="arm_wrist_link" />
     </joint>
@@ -435,7 +435,7 @@
     <link name="arm_hand_base_link">
       <visual>
         <geometry>
-          <box size="0.03 0.035 0.045"/>
+          <box size="0.035 0.045 0.03"/>
         </geometry>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <material name="black">
@@ -445,7 +445,7 @@
     </link>
 
     <joint name="arm_hand_base_joint" type="fixed">
-      <origin xyz="0.0 0.00 0.025" rpy="0 0 0" />
+      <origin xyz="0.0 0.00 0.035" rpy="0 0 0" />
       <parent link="arm_wrist_link"/>
       <child link="arm_hand_base_link" />
     </joint>
@@ -465,7 +465,7 @@
     <joint name="arm_hand_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.045" rpy="0 1.57 1.57" />
+      <origin xyz="0.00 -0.0225 0.03" rpy="0 1.57 1.57" />
       <parent link="arm_hand_base_link"/>
       <child link="arm_hand_link" />
     </joint>
@@ -475,7 +475,7 @@
         <geometry>
           <box size="0.005 0.05 0.03"/>
         </geometry>
-        <origin xyz="0.0 0.0 0.045" rpy="0 1.57 1.57" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 1.57 1.57" />
         <material name="white">
             <color rgba="1 1 1 1"/>
         </material>
@@ -483,7 +483,7 @@
     </link>
 
     <joint name="arm_hand_palm_joint" type="fixed">
-      <origin xyz="0.00 0.00 0.045" rpy="0 1.57 1.57" />
+      <origin xyz="0.00 0.0225 0.03" rpy="0 1.57 1.57" />
       <parent link="arm_hand_base_link"/>
       <child link="arm_hand_palm_link" />
     </joint>
