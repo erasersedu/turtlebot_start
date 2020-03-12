@@ -482,7 +482,7 @@
       </visual>
     </link>
 
-    <joint name="arm_hand_joint" type="fixed">
+    <joint name="arm_hand_palm_joint" type="fixed">
       <origin xyz="0.00 0.00 0.045" rpy="0 1.57 1.57" />
       <parent link="arm_hand_base_link"/>
       <child link="arm_hand_palm_link" />
