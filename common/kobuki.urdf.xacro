@@ -266,7 +266,7 @@
     <link name="head_tilt_link">
       <visual>
         <geometry>
-          <box size="0.025 0.045 0.05"/>
+          <box size="0.025 0.045 0.025"/>
         </geometry>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <material name="white">
@@ -278,7 +278,7 @@
     <joint name="head_tilt_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="1000.0" lower="-3.1416" upper="3.1416" velocity="0.5"/>
-      <origin xyz="0.00 0.00 0.0475" rpy="0 0 0" />
+      <origin xyz="0.00 0.00 0.035" rpy="0 0 0" />
       <parent link="head_pan_link"/>
       <child link="head_tilt_link" />
     </joint>
